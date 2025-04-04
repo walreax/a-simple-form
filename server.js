@@ -8,6 +8,11 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
+// Default route for testing
+app.get("/", (req, res) => {
+    res.send("Server is running! Submit forms to /submit");
+});
+
 // Form submission route
 app.post("/submit", (req, res) => {
     const { name, email, message } = req.body;
@@ -17,7 +22,7 @@ app.post("/submit", (req, res) => {
     }
 
     console.log("Form Data Received:", { name, email, message });
-    
+
     res.status(200).json({ success: true, message: "Form submitted successfully!" });
 });
 
